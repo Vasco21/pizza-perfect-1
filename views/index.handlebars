@@ -16,7 +16,7 @@
 
     <div class="cartTotal " >
       <strong>Total price</strong>  
-      <span class="cartTotalPrice">0.00</span>
+      <span class="cartTotalPrice">R {{TotalAmount}}</span>
       <a href="#">
         <img src="shopping-cart.png" alt="">
       </a>
@@ -28,80 +28,48 @@
       <img src="shopping-cart.png" alt="">
 
         <table>
+          {{#each ShoppingList}}
           <tr>
-            <td><strong>Small pizzas total:</strong></td>
-            <td><span class="smallTotalPrice">0.00</span></td>
+            <td><strong>{{sizeType}} pizzas total:</strong></td>
+            <td><span class="smallTotalPrice">{{quantiy}}</span></td>
+            <td><span class="smallTotalPrice">R {{amount}}</span></td>
           </tr>
-
-          <tr>
-            <td><strong>Medium pizzas total:</strong></td>
-            <td><span class="mediumTotalPrice">0.00</span></td>
-          </tr>
-          <tr>
-            <td><strong>Large pizza total:</strong></td>
-            <td><span class="largeTotalPrice">0.00</span></td>
-          </tr>
+          {{/each}}
           <tr>
             <td><strong>Total price</strong></td>
-            <td><span class="totalPrice">0.00</span></td>
+            <td><span class="totalPrice">R {{TotalAmount}}</span></td>
           </tr>
         </table>
-    </div>
+      <div class="odered-list">
+        <form action="/addToCart" method="POST"><button class="btn order" type="submit" style="margin-left: auto">Order</button></form>
+      
+      </div>
+    </div>  
 
+    
     <div class="pizzas">
-      <div class="pizza medium">
+      {{#each Pizza}}
+      <form action="/pizzas/{{sizeType}}" method="POST">
+      <div class="{{class}}">
         <div class="info">
-          <img src="pizza.png"
+          <img src="{{img}}"
             alt="">
-          <h2>Medium Pizza</h2>
-          <strong>R65.00</strong>
+          <h2>{{sizeType}}</h2>
+          <strong>R {{price}}</strong>
 
           <div>
-            medium margeritha pizza with 3 toppings max.
-            2 or less meat topping.
-            3 or less other toppings.
+            {{Description}}
           </div>
         </div>
 
         <div class="orderBox">
-          <button class="btn orderMediumPizza" style="margin-left: auto">Order medium pizza</button>
+          {{!-- <input type="submit" class="btn orderMediumPizza" value="Order medium pizza"> --}}
+          <button class="btn orderMediumPizza" type="submit" style="margin-left: auto">Order medium pizza</button>
         </div>
 
       </div>
-      <div class="pizza large">
-        <div class="info">
-          <img src="pizza.png"
-            alt="">
-          <h2>Large Pizza</h2>
-          <strong>85.00</strong>
-          <div>
-            large margeritha pizza with 3 toppings max.
-            3 meat toppings max.
-            3 or less other toppings.
-          </div>
-        </div>
-        <div class="orderBox" >
-          <button class="btn orderLargePizza" style="margin-left: auto">Order large pizza</button>
-        </div>
-      </div>
-      <div class="pizza small">
-        <div class="info">
-          <img src="pizza.png"
-            alt="">
-          <h2>Small Pizza</h2>
-          <strong>35.00</strong>
-          <i>
-            <ul>
-              <li>small pizza with 3 toppings</li>
-              <li>1 meat topping.</li>
-              <li>3 or less other toppings.</li>
-            </ul>
-          </i>
-        </div>
-        <div class="orderBox">
-          <button class="btn orderSmallPizza" style="margin-left: auto">Order small pizza</button>
-        </div>
-      </div>
+      </form>
+      {{/each}}
     </div>
     <div class="footer">
       <div class="contact">

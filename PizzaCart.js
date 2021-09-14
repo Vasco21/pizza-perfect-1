@@ -1,6 +1,9 @@
 module.exports = function() {
 
+	var pizzas = []
+
 	function add(pizzaId) {
+		pizzas.push(pizzaId)
 
 	}
 
@@ -9,7 +12,7 @@ module.exports = function() {
 	}
 
 	function list() {
-		
+		return pizzas
 	}
 
 	return {
